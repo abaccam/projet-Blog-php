@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Your blog</title>
+        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                margin: 50px 0 0 0;
+                padding: 0;
+                width: 100%;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-align: center;
+                color: #aaa;
+                font-size: 18px;
+            }
+
+            h1 {
+                color: #719e40;
+                letter-spacing: -3px;
+                font-family: 'Lato', sans-serif;
+                font-size: 100px;
+                font-weight: 200;
+                margin-bottom: 0;
+            }
+        </style>
+    </head>
+    <a href="{{path_for('index')}}">back to index</a>
+    <header> 
+        <h1 class="text-center" >Hello {{user.username}} </h1>
+    </header>
+    <body>
+       
+        <form action="{{path_for('addarticle',{ 'id': user.id })}}" method="POST" >
+            <div class="form-group row">
+                <label for="title" class="col-2 col-form-label text-center">Title</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-institution"></i>
+                        </div>
+                        <input id="title" name="title" placeholder="title of your article" type="text" required="required" class="form-control here">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="content" class="col-2 col-form-label text-center ">Content</label>
+                <div class="col-8">
+                    <textarea id="content" name="content"  placeholder="text..." cols="40" rows="10" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-4 col-8">
+                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    
+        <section class="container-row">
+            {% for article in articles %}
+            <div class="box">
+                <h1>{{article.title}}</h1>
+                <article>
+                    <content>
+                        <p>{{article.content}}</p>
+                    </content>
+                </article>
+            </div>
+            {% endfor %}
+        </section>
+    
+    </body>
+</html>
